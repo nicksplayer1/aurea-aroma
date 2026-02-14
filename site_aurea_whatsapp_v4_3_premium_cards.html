@@ -1,0 +1,1090 @@
+ <!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja de Velas Aromáticas</title>
+  <meta name="description" content="Velas aromáticas artesanais — aromas marcantes, entrega rápida e presente perfeito." />
+
+  <style>
+    :root{
+      /* Dark premium palette */
+      --bg: #07080b;
+      --bg2:#0b0d12;
+      --card: rgba(255,255,255,.04);
+      --card2: rgba(255,255,255,.06);
+      --muted: rgba(234,236,255,.72);
+      --muted2: rgba(234,236,255,.55);
+      --text: #f5f6ff;
+
+      /* Premium accents */
+      --gold: #ffcf87;
+      --rose: #f8a7c2;
+      --mint: #3ddc97;
+
+      --line: rgba(255,255,255,.10);
+      --line2: rgba(255,255,255,.14);
+
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 12px 30px rgba(0,0,0,.35);
+
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+
+/* Light theme overrides */
+[data-theme="light"]{
+  --bg: #f7f7fb;
+  --bg2:#eef0f7;
+  --card: rgba(0,0,0,.04);
+  --card2: rgba(0,0,0,.06);
+  --muted: rgba(20,24,36,.78);
+  --muted2: rgba(20,24,36,.62);
+  --text: #0b0d12;
+
+  --gold: #b56a00;
+  --rose: #b3205b;
+  --mint: #0b7a4a;
+
+  --line: rgba(0,0,0,.10);
+  --line2: rgba(0,0,0,.14);
+
+  --shadow: 0 18px 60px rgba(0,0,0,.10);
+  --shadow2: 0 12px 30px rgba(0,0,0,.08);
+}
+
+/* Light theme tweaks */
+[data-theme="light"] header{
+  background: rgba(247,247,251,.75);
+}
+[data-theme="light"] .logo{
+  box-shadow: 0 14px 30px rgba(181,106,0,.12);
+}
+
+
+/* Fixes for light theme readability */
+[data-theme="light"] .pill{
+  background: rgba(255,255,255,.78);
+}
+[data-theme="light"] .pill:hover{
+  background: rgba(255,255,255,.92);
+}
+[data-theme="light"] .kicker{
+  background: rgba(255,255,255,.70);
+  border-color: rgba(0,0,0,.10);
+}
+[data-theme="light"] details{
+  background: rgba(255,255,255,.70);
+  border-color: rgba(0,0,0,.10);
+}
+[data-theme="light"] details[open]{
+  background: rgba(255,255,255,.86);
+  border-color: rgba(0,0,0,.14);
+}
+[data-theme="light"] .tag{
+  background: rgba(255,255,255,.70);
+  border-color: rgba(0,0,0,.10);
+}
+[data-theme="light"] .phonePill code{
+  background: rgba(255,255,255,.70);
+  border-color: rgba(0,0,0,.10);
+  color: rgba(20,24,36,.78);
+}
+[data-theme="light"] .input, 
+[data-theme="light"] select, 
+[data-theme="light"] textarea{
+  background: rgba(255,255,255,.78);
+}
+[data-theme="light"] .input:focus, 
+[data-theme="light"] select:focus, 
+[data-theme="light"] textarea:focus{
+  background: rgba(255,255,255,.92);
+}
+[data-theme="light"] .input::placeholder{
+  color: rgba(20,24,36,.45);
+}
+
+/* Make burn time badge readable in light theme */
+[data-theme="light"] .burnBadge{
+  border-color: rgba(11,122,74,.55);
+  background: rgba(11,122,74,.18);
+  color: rgba(11,20,15,.95);
+  font-weight: 850;
+}
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.45;
+
+      background:
+        radial-gradient(900px 500px at 12% 8%, rgba(248,167,194,.12), transparent 55%),
+        radial-gradient(900px 500px at 86% 0%, rgba(255,207,135,.12), transparent 60%),
+        radial-gradient(900px 500px at 75% 82%, rgba(61,220,151,.07), transparent 52%),
+        linear-gradient(180deg, var(--bg), var(--bg2) 60%, var(--bg));
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font-family:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Subtle noise overlay (premium feel) */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:120px 120px;
+    }
+
+    /* Focus style */
+    :focus-visible{
+      outline:2px solid rgba(255,207,135,.55);
+      outline-offset:3px;
+      border-radius:12px;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(7,8,11,.55);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:850;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(255,207,135,.95), rgba(248,167,194,.85));
+      display:grid; place-items:center;
+      box-shadow: 0 14px 30px rgba(255,207,135,.18);
+    }
+    .logo span{filter: drop-shadow(0 10px 18px rgba(0,0,0,.45))}
+    .brandSub{
+      font-size:12px;
+      color:var(--muted2);
+      font-weight:650;
+      margin-top:-2px;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:10px;
+      margin:0; padding:0;
+      align-items:center;
+    }
+
+    .pill{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: var(--card);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      cursor:pointer;
+      color: var(--text);
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: var(--line2);
+      background: var(--card2);
+    }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      background: rgba(255,255,255,.05);
+    }
+    .btn:active{transform: translateY(0px) scale(.99)}
+
+    .btn.primary{
+      border-color: rgba(255,207,135,.35);
+      background:
+        radial-gradient(240px 120px at 20% 20%, rgba(255,207,135,.22), transparent 60%),
+        radial-gradient(260px 120px at 80% 10%, rgba(248,167,194,.18), transparent 55%),
+        rgba(255,255,255,.03);
+    }
+
+    .phonePill{
+      cursor:default;
+      color: var(--text);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .phonePill code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color: var(--muted2);
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+    }
+
+    /* Mobile menu */
+    .menuBtn{display:none}
+    .mobilePanel{
+      display:none;
+      border-top:1px solid var(--line);
+      padding:12px 0 14px;
+    }
+    .mobilePanel a{display:inline-block; margin:6px 8px 0 0;}
+
+    /* Hero */
+    .hero{padding:42px 0 26px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .heroCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(600px 320px at 18% 18%, rgba(255,207,135,.14), transparent 62%),
+        radial-gradient(600px 320px at 82% 32%, rgba(248,167,194,.12), transparent 58%),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      padding:24px;
+      overflow:hidden;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:8px; align-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.28);
+      border-radius:999px;
+      padding:8px 12px;
+      color:var(--muted2);
+      font-size:13px;
+      width:fit-content;
+    }
+    .kicker b{color:rgba(245,246,255,.95)}
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size:15px;
+      max-width:64ch;
+    }
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap}
+
+    .heroMini{
+      display:grid;
+      grid-template-rows: 1fr 1fr;
+      gap:18px;
+    }
+    .miniCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+      box-shadow: var(--shadow2);
+    }
+    .miniCard h3{margin:0 0 8px; font-size:16px}
+    .miniCard p{margin:0; color:var(--muted); font-size:14px}
+    .miniStat{
+      display:flex; gap:10px; align-items:center; margin-top:14px;
+      padding-top:12px; border-top:1px solid var(--line);
+      color:var(--muted2); font-size:13px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, rgba(255,207,135,.95), rgba(248,167,194,.85));
+      box-shadow: 0 10px 20px rgba(255,207,135,.14);
+    }
+
+    /* Sections */
+    section{padding:26px 0}
+    .sectionHead{
+      display:flex; align-items:end; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.01em;
+    }
+    .sectionHead p{margin:0; color:var(--muted2); font-size:14px}
+
+    /* Controls */
+    .controls{
+      display:flex; gap:10px; flex-wrap:wrap;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:10px;
+      background: rgba(255,255,255,.02);
+    }
+    .input, select, textarea{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.28);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 12px;
+      outline:none;
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .input::placeholder{color: rgba(234,236,255,.45)}
+    .input:focus, select:focus, textarea:focus{
+      border-color: rgba(255,207,135,.35);
+      background: rgba(0,0,0,.34);
+    }
+    select{cursor:pointer}
+
+    /* Products */
+    .grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .product{
+      grid-column: span 4;
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      display:flex;
+      flex-direction:column;
+      min-height: 325px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .product:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.045);
+    }
+
+    .product:hover .img.hasPhoto{
+      filter: saturate(1.06);
+    }
+    .product:hover .img.hasPhoto::after{
+      opacity: 1;
+    }
+
+    .img{
+      height: 155px;
+      background:
+        radial-gradient(260px 120px at 20% 35%, rgba(255,207,135,.18), transparent 60%),
+        radial-gradient(260px 120px at 80% 55%, rgba(248,167,194,.12), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    /* Premium photo treatment */
+    .img.hasPhoto{
+      background-image: var(--photo);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: translateZ(0);
+    }
+    /* Soft blurred glow from the same photo */
+    .img.hasPhoto::before{
+      content:"";
+      position:absolute;
+      inset:-26px;
+      background-image: var(--photo);
+      background-size: cover;
+      background-position: center;
+      filter: blur(16px) saturate(1.08);
+      transform: scale(1.22);
+      opacity: .34;
+      pointer-events:none;
+      z-index:0;
+    }
+    /* Contrast + vignette overlay */
+    .img.hasPhoto::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(520px 240px at 30% 0%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.62));
+      opacity: .95;
+      pointer-events:none;
+      z-index:3;
+    }
+    [data-theme="light"] .img.hasPhoto::after{
+      background:
+        radial-gradient(520px 240px at 30% 0%, rgba(255,255,255,.16), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.42));
+      opacity:.90;
+    }
+
+
+    .img::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(500px 200px at 50% 0%, rgba(255,255,255,.08), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .tag{
+      position:absolute; top:12px; left:12px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.30);
+      color: var(--text);
+      z-index:1;
+    }
+    .burnBadge{
+      min-width:46px;
+      height:24px;
+      padding:0 8px;
+      border-radius:999px;
+      border:1px solid rgba(61,220,151,.32);
+      background: rgba(61,220,151,.10);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      color: rgba(245,246,255,.88);
+      white-space:nowrap;
+    }
+
+    .content{
+      padding:14px 14px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .titleRow{display:flex; align-items:start; justify-content:space-between; gap:10px}
+    .product h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .note{color:var(--muted); font-size:13px; margin:0}
+    .priceRow{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-top:auto;
+    }
+    .price{
+      font-weight:850;
+      letter-spacing:.2px;
+      display:flex; gap:8px; align-items:baseline;
+    }
+    .price small{color:var(--muted2); font-weight:650}
+
+    
+    .add{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,207,135,.34);
+      background:
+        radial-gradient(220px 90px at 20% 20%, rgba(255,207,135,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color: var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .add::before{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-60%;
+      width:50%;
+      height:180%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
+      transform: rotate(18deg);
+      opacity:.0;
+      pointer-events:none;
+    }
+    .product:hover .add::before{
+      animation: shine 1.05s ease forwards;
+      opacity:1;
+    }
+    @keyframes shine{
+      from{ transform: translateX(0) rotate(18deg); }
+      to{ transform: translateX(260%) rotate(18deg); }
+    }
+    .add:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,207,135,.55);
+      background:
+        radial-gradient(220px 90px at 20% 20%, rgba(255,207,135,.24), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    }
+
+    .add:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,207,135,.45);
+      background:
+        radial-gradient(220px 90px at 20% 20%, rgba(255,207,135,.22), transparent 60%),
+        rgba(255,255,255,.05);
+    }
+    .add:active{transform: translateY(0px) scale(.99)}
+
+    /* About + FAQ + Contact */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      padding:16px;
+    }
+    .card h3{margin:0 0 8px}
+    .list{
+      margin:0; padding-left:18px; color:var(--muted);
+    }
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding:10px 12px;
+      background: rgba(0,0,0,.20);
+      transition: border-color .18s ease, background .18s ease;
+    }
+    details[open]{
+      border-color: rgba(255,255,255,.16);
+      background: rgba(0,0,0,.26);
+    }
+    details + details{margin-top:10px}
+    summary{cursor:pointer; font-weight:800}
+    details p{color:var(--muted); margin:8px 0 0}
+
+    /* Footer */
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted2);
+    }
+
+
+/* Floating WhatsApp */
+.floatWhats{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:60;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:999px;
+  border:1px solid rgba(61,220,151,.35);
+  background:
+    radial-gradient(240px 120px at 20% 20%, rgba(61,220,151,.16), transparent 60%),
+    rgba(0,0,0,.34);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  font-weight:850;
+  letter-spacing:.2px;
+}
+.floatWhats:hover{
+  transform: translateY(-2px);
+  border-color: rgba(61,220,151,.55);
+  background:
+    radial-gradient(240px 120px at 20% 20%, rgba(61,220,151,.20), transparent 60%),
+    rgba(0,0,0,.42);
+}
+.floatWhats:active{transform: translateY(0px) scale(.99)}
+.floatWhats .ping{
+  width:10px; height:10px; border-radius:50%;
+  background: rgba(61,220,151,.95);
+  box-shadow: 0 0 0 0 rgba(61,220,151,.40);
+  animation: ping 2.2s infinite;
+}
+@keyframes ping{
+  0%{box-shadow:0 0 0 0 rgba(61,220,151,.35)}
+  70%{box-shadow:0 0 0 14px rgba(61,220,151,0)}
+  100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}
+}
+
+[data-theme="light"] .floatWhats{
+  background:
+    radial-gradient(240px 120px at 20% 20%, rgba(11,122,74,.14), transparent 60%),
+    rgba(255,255,255,.75);
+  box-shadow: 0 16px 40px rgba(0,0,0,.10);
+  border-color: rgba(11,122,74,.30);
+}
+[data-theme="light"] .floatWhats:hover{
+  background:
+    radial-gradient(240px 120px at 20% 20%, rgba(11,122,74,.18), transparent 60%),
+    rgba(255,255,255,.90);
+  border-color: rgba(11,122,74,.45);
+}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+      .heroMini{grid-template-rows:auto; grid-template-columns: 1fr 1fr}
+      .product{grid-column: span 6}
+      .twoCol{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      nav ul{display:none}
+      .menuBtn{display:inline-flex}
+    }
+    @media (max-width: 620px){
+      .heroMini{grid-template-columns:1fr}
+      .product{grid-column: span 12}
+      .cta .phonePill{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Ir para o topo">
+          <div class="logo" aria-hidden="true"><span>🕯️</span></div>
+          <div>
+            <div>Velas Aromáticas</div>
+            <div class="brandSub">Loja • aromas e presentes</div>
+          </div>
+        </a>
+
+        <nav aria-label="Menu principal">
+          <ul>
+            <li><a class="pill" href="#produtos">Produtos</a></li>
+            <li><a class="pill" href="#sobre">Sobre</a></li>
+            <li><a class="pill" href="#faq">FAQ</a></li>
+            <li><a class="pill" href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <button class="btn menuBtn" id="menuBtn" type="button">☰ Menu</button>
+          <button class="btn" id="themeToggle" type="button" aria-label="Alternar tema">🌙</button>
+          <a class="btn primary" id="whatsTop" target="_blank" rel="noopener">Pedir no WhatsApp</a>
+          <span class="pill phonePill" aria-label="Telefone">
+            📞 <code id="phoneText"></code>
+          </span>
+        </div>
+      </div>
+
+      <div class="mobilePanel" id="mobilePanel" aria-label="Menu mobile">
+        <a class="pill" href="#produtos">Produtos</a>
+        <a class="pill" href="#sobre">Sobre</a>
+        <a class="pill" href="#faq">FAQ</a>
+        <a class="pill" href="#contato">Contato</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <div class="container">
+      <section class="hero">
+        <div class="heroGrid">
+          <div class="heroCard">
+            <div class="kicker">✨ <b>Velas premium</b> • feitas pra perfumar e decorar</div>
+            <h1>Velas aromáticas com <span style="color:rgba(255,207,135,.95)">cara de casa</span> — do jeitinho que você gosta.</h1>
+            <p class="sub">
+              Escolha aroma, tamanho e intensidade. Perfeitas pra presente, autocuidado e decoração.
+              <br/>Pedido direto no WhatsApp: rápido e sem enrolação.
+            </p>
+            <div class="heroActions">
+              <a class="btn primary" href="#produtos">Ver produtos</a>
+              <a class="btn" href="#contato">Falar comigo</a>
+            </div>
+          </div>
+
+          <div class="heroMini">
+            <div class="miniCard">
+              <h3>📦 Entrega / Retirada</h3>
+              <p>Defina sua área, prazo e taxa. (Edite aqui.)</p>
+              <div class="miniStat"><span class="dot"></span> <span>Envio em 24–48h (exemplo)</span></div>
+            </div>
+            <div class="miniCard">
+              <h3>🎁 Presente perfeito</h3>
+              <p>Embalagem especial e cartão com mensagem.</p>
+              <div class="miniStat"><span class="dot"></span> <span>Brinde em compras acima de R$ 99 (exemplo)</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PRODUTOS -->
+    <div class="container">
+      <section id="produtos">
+        <div class="sectionHead">
+          <div>
+            <h2>Produtos</h2>
+            <p>Edite nomes/descrições/preços no array <b>PRODUCTS</b> do JS.</p>
+          </div>
+          <div class="controls" role="group" aria-label="Filtros de produtos">
+            <input class="input" id="search" placeholder="Buscar aroma, tamanho, tipo..." />
+            <select id="filter">
+              <option value="all">Todos</option>
+              <option value="relax">Relax</option>
+              <option value="doce">Doce</option>
+              <option value="fresco">Fresco</option>
+              <option value="citricos">Cítricos</option>
+            </select>
+            <select id="sort">
+              <option value="relevancia">Ordenar: relevância</option>
+              <option value="preco-asc">Preço: menor → maior</option>
+              <option value="preco-desc">Preço: maior → menor</option>
+              <option value="nome">Nome: A → Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" id="productGrid"></div>
+      </section>
+
+      <!-- SOBRE -->
+      <section id="sobre">
+        <div class="sectionHead">
+          <div>
+            <h2>Sobre</h2>
+            <p>Troque o texto e deixe com a sua identidade.</p>
+          </div>
+        </div>
+
+        <div class="twoCol">
+          <div class="card">
+            <h3>🌿 Feitas com cuidado</h3>
+            <p class="note">
+              Descreva seu processo, matéria-prima e o que torna suas velas especiais.
+              Ex.: cera vegetal, pavio de algodão, fragrâncias premium etc.
+            </p>
+            <ul class="list">
+              <li>Duração longa (exemplo)</li>
+              <li>Boa projeção de aroma (exemplo)</li>
+              <li>Acabamento bonito pra decoração (exemplo)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>💡 Como escolher o aroma</h3>
+            <p class="note">
+              • Relax: lavanda/baunilha<br/>
+              • Fresco: chá branco/algodão<br/>
+              • Cítrico: capim-limão/laranja
+            </p>
+            <p class="note" style="margin-top:10px;">
+              Dica: coloque aqui política de troca, pagamento e prazo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="sectionHead">
+          <div>
+            <h2>FAQ</h2>
+            <p>Menos dúvida = mais pedido.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <details>
+            <summary>Quanto tempo dura a vela?</summary>
+            <p>Depende do tamanho e do uso. Coloque aqui a média por tamanho (ex.: 120g ~ 20h).</p>
+          </details>
+          <details>
+            <summary>Como usar sem fazer fumaça?</summary>
+            <p>Apare o pavio para ~0,5 cm antes de acender e evite correntes de ar.</p>
+          </details>
+          <details>
+            <summary>Fazem personalizado?</summary>
+            <p>Sim (se você fizer). Diga prazo, mínimo e como solicitar.</p>
+          </details>
+          <details>
+            <summary>Formas de pagamento</summary>
+            <p>Ex.: Pix, cartão, dinheiro na retirada. Edite conforme sua realidade.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <section id="contato">
+        <div class="sectionHead">
+          <div>
+            <h2>Contato</h2>
+            <p>WhatsApp direto + mensagem simples.</p>
+          </div>
+        </div>
+
+        <div class="twoCol">
+          <div class="card">
+            <h3>📲 WhatsApp</h3>
+            <p class="note">Clique e já vai com mensagem pronta (edite no JS).</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <a class="btn primary" id="whatsContact" target="_blank" rel="noopener">Chamar no Whats</a>
+              <a class="btn" href="#produtos">Voltar aos produtos</a>
+            </div>
+            <p class="note" style="margin-top:12px;">Dica: o botão “Pedir no WhatsApp” já manda o nome do produto.</p>
+          </div>
+
+          <div class="card">
+            <h3>✉️ Mensagem</h3>
+            <form id="contactForm">
+              <div style="display:grid; gap:10px; grid-template-columns:1fr 1fr;">
+                <input class="input" name="nome" placeholder="Seu nome" required />
+                <input class="input" name="email" type="email" placeholder="Seu e-mail" required />
+              </div>
+              <input class="input" name="assunto" placeholder="Assunto" style="width:100%; margin-top:10px;" />
+              <textarea class="input" name="mensagem" placeholder="Escreva sua mensagem..." rows="5" style="width:100%; margin-top:10px;" required></textarea>
+              <div style="display:flex; gap:10px; margin-top:10px;">
+                <button class="btn primary" type="submit">Enviar (simulado)</button>
+                <button class="btn" type="reset">Limpar</button>
+              </div>
+              <p class="note" id="formStatus" style="margin-top:10px;"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center;">
+          <div>
+            <b style="color:rgba(245,246,255,.95)">Velas Aromáticas</b><br/>
+            <span>© <span id="year"></span> • Todos os direitos reservados</span>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="pill" href="#top">Voltar ao topo ↑</a>
+            <a class="pill" href="#produtos">Produtos</a>
+            <a class="pill" href="#contato">Contato</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+<script>
+  // ===========================
+  // CONFIG (edite aqui)
+  // ===========================
+  const STORE_NAME = "Velas Aromáticas";
+  const WHATSAPP_NUMBER = "5599999999999"; // <-- troque aqui (55 + DDD + número)
+  const WHATSAPP_DEFAULT_MSG = "Olá! Quero comprar velas aromáticas. Pode me ajudar?";
+
+  const PRODUCTS = [
+    { id: "v1", name: "Lavanda Relax • 120g", price: 39.90, category: "relax", badge: "Mais vendido", desc: "Aroma calmante, perfeito pra dormir e relaxar.", burn: "≈ 20h" , image: "" },
+    { id: "v2", name: "Baunilha Doce • 180g", price: 54.90, category: "doce", badge: "Presente", desc: "Doce na medida, confortável e aconchegante.", burn: "≈ 30h" , image: "" },
+    { id: "v3", name: "Capim-limão Cítrico • 120g", price: 42.90, category: "citricos", badge: "Energizante", desc: "Fresco e vibrante, ótimo pra sala e escritório.", burn: "≈ 20h" , image: "" },
+    { id: "v4", name: "Chá Branco Fresco • 120g", price: 44.90, category: "fresco", badge: "Premium", desc: "Cheiro limpo e elegante, sensação de roupa limpa.", burn: "≈ 20h" , image: "" },
+    { id: "v5", name: "Algodão • 180g", price: 59.90, category: "fresco", badge: "Longa duração", desc: "Suave, agradável e ótimo pra ambientes grandes.", burn: "≈ 30h" , image: "" },
+    { id: "v6", name: "Laranja & Canela • 120g", price: 45.90, category: "citricos", badge: "Quentinho", desc: "Cítrico com toque especiado, clima de casa.", burn: "≈ 20h" , image: "" },
+  ];
+
+  // ===========================
+  // Helpers
+  // ===========================
+  const money = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const qs = (s) => document.querySelector(s);
+
+  function waLink(message){
+    const text = encodeURIComponent(message);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  }
+
+  const state = { search:"", filter:"all", sort:"relevancia" };
+
+  function getFilteredProducts(){
+    let items = [...PRODUCTS];
+
+    if(state.search.trim()){
+      const t = state.search.trim().toLowerCase();
+      items = items.filter(p =>
+        (p.name + " " + p.desc + " " + p.category + " " + (p.badge||"")).toLowerCase().includes(t)
+      );
+    }
+
+    if(state.filter !== "all"){
+      items = items.filter(p => p.category === state.filter);
+    }
+
+    if(state.sort === "preco-asc") items.sort((a,b)=>a.price-b.price);
+    if(state.sort === "preco-desc") items.sort((a,b)=>b.price-a.price);
+    if(state.sort === "nome") items.sort((a,b)=>a.name.localeCompare(b.name));
+
+    return items;
+  }
+
+  function renderProducts(){
+    const grid = qs("#productGrid");
+    const items = getFilteredProducts();
+
+    grid.innerHTML = items.map(p => `
+      <article class="product" data-id="${p.id}">
+        <div class="img ${p.image ? "hasPhoto" : ""}" ${p.image ? `style="background-image:url('${p.image}')"` : ""}>
+          <div class="tag">${p.badge || "Aroma"}</div>
+        </div>
+        <div class="content">
+          <div class="titleRow">
+            <h3>${p.name}</h3>
+            <span class="burnBadge" title="Tempo de queima">${p.burn || "—"}</span>
+          </div>
+          <p class="note">${p.desc}</p>
+          <div class="priceRow">
+            <div class="price">
+              ${money(p.price)}
+              <small>/ un</small>
+            </div>
+            <a class="add" href="${waLink(`Olá! Quero pedir: ${p.name} (${money(p.price)}). Entrega na minha cidade?`)}" target="_blank" rel="noopener">
+              ✦ Pedir
+            </a>
+          </div>
+        </div>
+      </article>
+    `).join("");
+
+    if(items.length === 0){
+      grid.innerHTML = `<div class="card" style="grid-column: span 12;">
+        <h3 style="margin:0 0 6px;">Nada encontrado</h3>
+        <p class="note" style="margin:0;">Tente “lavanda”, “180g” ou mude o filtro.</p>
+      </div>`;
+    }
+  }
+
+  // Events
+  qs("#search").addEventListener("input", (e) => { state.search = e.target.value; renderProducts(); });
+  qs("#filter").addEventListener("change", (e) => { state.filter = e.target.value; renderProducts(); });
+  qs("#sort").addEventListener("change", (e) => { state.sort = e.target.value; renderProducts(); });
+
+
+// ===========================
+// Theme (dark / light)
+// ===========================
+function applyTheme(theme){
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+  const btn = qs("#themeToggle");
+  if(btn){
+    btn.textContent = theme === "light" ? "☀️" : "🌙";
+    btn.setAttribute("aria-label", theme === "light" ? "Ativar tema escuro" : "Ativar tema claro");
+    btn.title = theme === "light" ? "Tema claro" : "Tema escuro";
+  }
+}
+
+function setupTheme(){
+  const saved = localStorage.getItem("theme");
+  // Base do site: tema escuro. Só muda se o usuário escolher e ficar salvo.
+  const initial = saved || "dark";
+  applyTheme(initial);
+
+  const btn = qs("#themeToggle");
+  if(btn){
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  }
+}
+
+  function setupWhats(){
+    qs("#whatsTop").href = waLink(WHATSAPP_DEFAULT_MSG);
+    qs("#whatsContact").href = waLink(WHATSAPP_DEFAULT_MSG);
+    const wf = qs("#whatsFloat");
+    if(wf) wf.href = waLink(WHATSAPP_DEFAULT_MSG);
+
+    // Pretty phone display
+    const ddi = WHATSAPP_NUMBER.slice(0,2);
+    const rest = WHATSAPP_NUMBER.slice(2);
+    const phonePretty = `+${ddi} ${rest}`;
+    const pt = qs("#phoneText");
+    if(pt) pt.textContent = phonePretty;
+  }
+
+  // Mobile menu
+  const menuBtn = qs("#menuBtn");
+  const mobilePanel = qs("#mobilePanel");
+  if(menuBtn && mobilePanel){
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mobilePanel.style.display === "block";
+      mobilePanel.style.display = isOpen ? "none" : "block";
+      menuBtn.textContent = isOpen ? "☰ Menu" : "✕ Fechar";
+    });
+
+    // close on click
+    mobilePanel.addEventListener("click", (e) => {
+      if(e.target.tagName === "A"){
+        mobilePanel.style.display = "none";
+        menuBtn.textContent = "☰ Menu";
+      }
+    });
+  }
+
+  // Init
+  qs("#year").textContent = new Date().getFullYear();
+  setupTheme();
+  setupWhats();
+  renderProducts();
+
+  // Form simulated
+  qs("#contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const st = qs("#formStatus");
+    st.textContent = "Mensagem enviada (simulado). Use o WhatsApp para pedidos.";
+  });
+</script>
+
+<!-- Floating WhatsApp (mobile-friendly) -->
+<a class="floatWhats" id="whatsFloat" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp">
+  <span class="ping" aria-hidden="true"></span> 💬 WhatsApp
+</a>
+</body>
+</html>
